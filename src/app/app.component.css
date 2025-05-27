@@ -1,0 +1,222 @@
+/* ==== RESET / BASE ==== */
+
+
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    
+}
+
+body {
+   
+    /* Usando a fonte Roboto Slab */
+    background: linear-gradient(135deg, #6e7e8f, #2b3e50);
+    color: #f1f1f1;
+    min-height: 100vh;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* ==== BOARD CONTAINER ==== */
+.board {
+
+    font-family: 'Roboto Slab', serif;
+    display: flex;
+    gap: 32px;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    max-width: 3000px;
+    margin-top: 50px;
+    padding: 20px;
+   min-height: 100vh;
+}
+
+/* ==== COLUMN ==== */
+.column {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    width: 320px;
+    min-height: 450px;
+    padding: 20px 16px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.column:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.2);
+}
+
+.column h3 {
+    font-size: 26px;
+    /* Aumentei o tamanho para dar mais presença */
+    font-weight: 600;
+    color: #2b3e50;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    text-align: center;
+    border-bottom: 3px solid #3498db;
+}
+
+/* ==== TASK CARD ==== */
+.task {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 18px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border-left: 8px solid #3498db;
+    font-size: 18px;
+    /* Fonte maior para maior legibilidade */
+    font-weight: 500;
+    color: #34495e;
+    cursor: grab;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.task:hover {
+    background-color: #f0f4f7;
+    transform: scale(1.02);
+}
+
+.task span {
+    flex: 1;
+}
+
+/* ==== BOTÃO DE MOVIMENTO (>) ==== */
+.move-btn {
+    background-color: transparent;
+    border: 2px solid #3498db;
+    color: #3498db;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-left: 10px;
+    padding: 0;
+}
+
+.move-btn:hover {
+    background-color: #3498db;
+    color: white;
+}
+
+.move-btn:disabled {
+    border-color: #ccc;
+    color: #ccc;
+    cursor: not-allowed;
+    background-color: #f0f0f0;
+}
+
+/* ==== BOTÃO ADICIONAR TAREFA ==== */
+.add-task-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: #3498db;
+    color: white;
+    font-size: 36px;
+    font-weight: bold;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+}
+
+.add-task-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* ==== FORMULÁRIO DE ADICIONAR TAREFA ==== */
+.add-task-form {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px 30px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 999;
+}
+
+.add-task-form input {
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #3498db;
+    border-radius: 8px;
+    outline: none;
+}
+
+.add-task-form input:focus {
+    border-color: #2ecc71;
+}
+
+.submit-task-btn,
+.cancel-task-btn {
+    padding: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+    background-color: #3498db;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.submit-task-btn:hover {
+    background-color: #2ecc71;
+}
+
+.cancel-task-btn:hover {
+    background-color: #e74c3c;
+}
+
+/* ==== BOTÃO DE DELETAR (Minimalista) ==== */
+.delete-btn {
+    background: transparent;
+    border: none;
+    color: #e74c3c;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-right: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+
+}
+
+.delete-btn i {
+    margin-right: 8px;
+}
+
+.delete-btn:hover {
+    color: #c0392b;
+    transform: scale(1.1);
+}
