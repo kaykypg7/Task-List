@@ -8,7 +8,6 @@ Uma aplicação simples de gerenciamento de tarefas construída com Angular 19, 
 - ➡️ Mover tarefas entre as colunas (To Do → Em Progresso → Concluído)
 - ⬅️ Voltar tarefas para etapas anteriores
 - 🗑️ Deletar tarefas concluídas
-- 💾 Dados salvos no localStorage (persistência local)
 - 📱 Interface responsiva e moderna
 
 ## 🚀 Como executar
@@ -19,8 +18,6 @@ npm install
 npm start
 ```
 
-A aplicação estará disponível em `http://localhost:4200`
-
 ### Build para produção
 ```bash
 npm run build
@@ -28,34 +25,12 @@ npm run build
 
 Os arquivos serão gerados na pasta `dist/my-project`
 
-## 🌐 Deploy na Vercel
-
-1. Faça push do código para um repositório no GitHub
-2. Conecte o repositório na Vercel
-3. A Vercel detectará automaticamente que é um projeto Angular
-4. O deploy será feito automaticamente usando as configurações do `vercel.json`
-
 ## 🛠️ Tecnologias utilizadas
 
 - Angular 19
 - TypeScript
-- CSS3 (Flexbox)
-- Font Awesome (ícones)
-- Google Fonts (Roboto Slab)
-
-## 📂 Estrutura do projeto
-
-```
-src/
-├── app/
-│   ├── app.component.ts    # Lógica principal da aplicação
-│   ├── app.component.html  # Template da interface
-│   ├── app.component.css   # Estilos da aplicação
-│   └── app.config.ts       # Configuração do Angular
-├── environments/           # Configurações de ambiente
-├── index.html             # Página principal
-└── main.ts                # Bootstrap da aplicação
-```
+- CSS3
+- HTML5
 
 ## 💡 Sobre o projeto
 
