@@ -1,39 +1,137 @@
 /* ==== RESET / BASE ==== */
-
-
-
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    
 }
 
 body {
-   
-    /* Usando a fonte Roboto Slab */
+    font-family: 'Roboto Slab', serif;
     background: linear-gradient(135deg, #6e7e8f, #2b3e50);
     color: #f1f1f1;
     min-height: 100vh;
-    justify-content: center;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.app-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.main-content {
+    flex: 1;
+    position: relative;
+}
+
+/* ==== HEADER ==== */
+header {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 30px 20px;
+    margin-bottom: 40px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border-bottom: 3px solid #3498db;
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    padding: 20px;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.header-title {
+    color: #2b3e50;
+    font-size: 2.5rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-direction: column;
+    text-align: left;
+}
+
+.header-icon {
+    font-size: 3rem;
+    filter: drop-shadow(0 4px 8px rgba(52, 152, 219, 0.3));
+}
+
+.header-subtitle {
+    font-size: 1rem;
+    color: #7f8c8d;
+    font-weight: 400;
+    margin-top: 5px;
+}
+
+.header-stats {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.stat {
+    text-align: center;
+    background: rgba(52, 152, 219, 0.1);
+    padding: 15px 20px;
+    border-radius: 12px;
+    border: 2px solid rgba(52, 152, 219, 0.2);
+    transition: all 0.3s ease;
+}
+
+.stat:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(52, 152, 219, 0.2);
+    border-color: #3498db;
+}
+
+.stat-number {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #3498db;
+    line-height: 1;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: #5a6c7d;
+    font-weight: 500;
+    margin-top: 5px;
+}
+
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .header-title {
+        font-size: 2rem;
+    }
+
+    .header-stats {
+        justify-content: center;
+    }
 }
 
 /* ==== BOARD CONTAINER ==== */
 .board {
-
     font-family: 'Roboto Slab', serif;
     display: flex;
     gap: 32px;
     justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 100%;
-    max-width: 3000px;
-    margin-top: 50px;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: 0 auto;
     padding: 20px;
-   min-height: 100vh;
 }
 
 /* ==== COLUMN ==== */
@@ -123,9 +221,10 @@ body {
 
 /* ==== BOTÃO ADICIONAR TAREFA ==== */
 .add-task-btn {
-    position: fixed;
+    position: sticky;
     bottom: 30px;
-    right: 30px;
+    float: right;
+    margin-right: 30px;
     background-color: #3498db;
     color: white;
     font-size: 36px;
@@ -140,6 +239,7 @@ body {
     cursor: pointer;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     transition: all 0.3s ease;
+    z-index: 1;
 }
 
 .add-task-btn:hover {
@@ -153,14 +253,15 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: rgba(255, 255, 255, 0.9);
-    padding: 20px 30px;
+    background: rgba(255, 255, 255);
+    padding: 160px 240px;
     border-radius: 10px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.);
     display: flex;
     flex-direction: column;
     gap: 10px;
     z-index: 999;
+    border: 1px solid rgb(106, 195, 255);
 }
 
 .add-task-form input {
@@ -196,7 +297,26 @@ body {
     background-color: #e74c3c;
 }
 
-/* ==== BOTÃO DE DELETAR (Minimalista) ==== */
+/* ==== FOOTER ==== */
+footer {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    text-align: center;
+    padding: 20px;
+    margin-top: auto;
+    border-top: 2px solid rgba(52, 152, 219, 0.3);
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+}
+
+footer p {
+    color: #5a6c7d;
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin: 0;
+    letter-spacing: 0.5px;
+}
+
+/* ==== BOTÃO DE DELETAR ==== */
 .delete-btn {
     background: transparent;
     border: none;

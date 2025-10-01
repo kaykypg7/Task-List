@@ -1,85 +1,71 @@
 import { Component } from '@angular/core';
-import { DragDropModule } from '@angular/cdk/drag-drop';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';  // Importando o CommonModule
-import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
 interface Task {
+  id: number;
   title: string;
+  status: 'todo' | 'inProgress' | 'done';
 }
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, DragDropModule, FormsModule],  // Adicionando CommonModule aqui
+  imports: [CommonModule, FormsModule],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title(title: any) {
-    throw new Error('Method not implemented.');
-  }
   todo: Task[] = [
-    { title: 'Planejar estrutura do site' },
-    { title: 'Definir paleta de cores' },
-    { title: 'Escrever conteúdo inicial' }
+    { id: 1, title: 'Estudar Angular', status: 'todo' },
+    { id: 2, title: 'Fazer exercícios', status: 'todo' }
   ];
 
   inProgress: Task[] = [
-    { title: 'Desenvolver layout responsivo' },
-    { title: 'Configurar servidor' }
+    { id: 3, title: 'Criar projeto', status: 'inProgress' }
   ];
 
   done: Task[] = [
-    { title: 'Instalar ferramentas de desenvolvimento' },
-    { title: 'Criar repositório no GitHub' }
+    { id: 4, title: 'Setup do ambiente', status: 'done' }
   ];
 
-  isAddTaskFormVisible = false;
-  newTaskTitle = '';
+  showForm = false;
+  newTask = '';
+  nextId = 5;
 
-  drop(event: CdkDragDrop<Task[]>) {
-    if (event.previousContainer === event.container) {
-      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-    } else {
-      transferArrayItem(
-        event.previousContainer.data,
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex
-      );
+  addNewTask() {
+    if (this.newTask.trim()) {
+      this.todo.push({
+        id: this.nextId++,
+        title: this.newTask.trim(),
+        status: 'todo'
+      });
+      this.newTask = '';
+      this.showForm = false;
     }
   }
 
-  showAddTaskForm() {
-    this.isAddTaskFormVisible = true;
-  }
-
-  hideAddTaskForm() {
-    this.isAddTaskFormVisible = false;
-    this.newTaskTitle = ''; // Reseta o campo de input
-  }
-
-  addTask() {
-    if (this.newTaskTitle.trim() !== '') {
-      this.todo.push({ title: this.newTaskTitle });
-      this.hideAddTaskForm(); // Esconde o formulário após adicionar
+  moveRight(task: Task) {
+    if (task.status === 'todo') {
+      this.todo = this.todo.filter(t => t.id !== task.id);
+      this.inProgress.push({ ...task, status: 'inProgress' });
+    } else if (task.status === 'inProgress') {
+      this.inProgress = this.inProgress.filter(t => t.id !== task.id);
+      this.done.push({ ...task, status: 'done' });
     }
   }
 
-  moveTaskToInProgress(task: Task) {
-    this.todo = this.todo.filter(t => t !== task); // Remove da lista "To Do"
-    this.inProgress.push(task); // Adiciona à lista "In Progress"
+  moveLeft(task: Task) {
+    if (task.status === 'inProgress') {
+      this.inProgress = this.inProgress.filter(t => t.id !== task.id);
+      this.todo.push({ ...task, status: 'todo' });
+    } else if (task.status === 'done') {
+      this.done = this.done.filter(t => t.id !== task.id);
+      this.inProgress.push({ ...task, status: 'inProgress' });
+    }
   }
 
-  moveTaskToDone(task: Task) {
-    this.inProgress = this.inProgress.filter(t => t !== task); // Remove da lista "In Progress"
-    this.done.push(task); // Adiciona à lista "Done"
-  }
   deleteTask(task: Task) {
-    const index = this.done.indexOf(task);
-    if (index > -1) {
-      this.done.splice(index, 1); // Remove a tarefa da lista "Done"
-    }
+    this.done = this.done.filter(t => t.id !== task.id);
   }
 }

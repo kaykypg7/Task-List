@@ -1,59 +1,62 @@
-# MyProject
+# 📋 Lista de Tarefas - Angular
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.8.
+Uma aplicação simples de gerenciamento de tarefas construída com Angular 19, perfeita para organizar seu trabalho em três categorias: **To Do**, **Em Progresso** e **Concluído**.
 
-## Development server
+## ✨ Funcionalidades
 
-To start a local development server, run:
+- ➕ Adicionar novas tarefas
+- ➡️ Mover tarefas entre as colunas (To Do → Em Progresso → Concluído)
+- ⬅️ Voltar tarefas para etapas anteriores
+- 🗑️ Deletar tarefas concluídas
+- 💾 Dados salvos no localStorage (persistência local)
+- 📱 Interface responsiva e moderna
 
+## 🚀 Como executar
+
+### Desenvolvimento
 ```bash
-ng serve
+npm install
+npm start
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+A aplicação estará disponível em `http://localhost:4200`
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
+### Build para produção
 ```bash
-ng generate component component-name
+npm run build
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Os arquivos serão gerados na pasta `dist/my-project`
 
-```bash
-ng generate --help
+## 🌐 Deploy na Vercel
+
+1. Faça push do código para um repositório no GitHub
+2. Conecte o repositório na Vercel
+3. A Vercel detectará automaticamente que é um projeto Angular
+4. O deploy será feito automaticamente usando as configurações do `vercel.json`
+
+## 🛠️ Tecnologias utilizadas
+
+- Angular 19
+- TypeScript
+- CSS3 (Flexbox)
+- Font Awesome (ícones)
+- Google Fonts (Roboto Slab)
+
+## 📂 Estrutura do projeto
+
+```
+src/
+├── app/
+│   ├── app.component.ts    # Lógica principal da aplicação
+│   ├── app.component.html  # Template da interface
+│   ├── app.component.css   # Estilos da aplicação
+│   └── app.config.ts       # Configuração do Angular
+├── environments/           # Configurações de ambiente
+├── index.html             # Página principal
+└── main.ts                # Bootstrap da aplicação
 ```
 
-## Building
+## 💡 Sobre o projeto
 
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Este projeto foi simplificado para ser uma aplicação frontend pura, sem dependências de backend ou banco de dados. Ideal para demonstração e portfólio, utilizando apenas o localStorage para persistência de dados.

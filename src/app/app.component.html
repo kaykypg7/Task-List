@@ -1,36 +1,68 @@
-<div class="board">
-  <div class="column" cdkDropList #todoList="cdkDropList" [cdkDropListData]="todo"
-    [cdkDropListConnectedTo]="[inProgressList, doneList]" (cdkDropListDropped)="drop($event)">
-    <h3>To Do</h3>
-    <div *ngFor="let task of todo" cdkDrag class="task">
-      <span>{{ task.title }}</span>
-      <button class="move-btn" (click)="moveTaskToInProgress(task)"> &gt; </button>
+<div class="app-container">
+  <header>
+    <div class="header-content">
+      <h1 class="header-title">
+        <span class="header-icon">📋</span>
+        Task Manager
+        <span class="header-subtitle">Organize suas tarefas de forma simples</span>
+      </h1>
+      <div class="header-stats">
+        <div class="stat">
+          <span class="stat-number">{{ todo.length }}</span>
+          <span class="stat-label">Para Fazer</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">{{ inProgress.length }}</span>
+          <span class="stat-label">Em Progresso</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">{{ done.length }}</span>
+          <span class="stat-label">Concluídas</span>
+        </div>
+      </div>
     </div>
-  </div>
+  </header>
 
-  <div class="column" cdkDropList #inProgressList="cdkDropList" [cdkDropListData]="inProgress"
-    [cdkDropListConnectedTo]="[todoList, doneList]" (cdkDropListDropped)="drop($event)">
-    <h3>In Progress</h3>
-    <div *ngFor="let task of inProgress" cdkDrag class="task">
-      <span>{{ task.title }}</span>
-      <button class="move-btn" (click)="moveTaskToDone(task)"> &gt; </button>
+  <main class="main-content">
+    <div class="board">
+      <div class="column">
+        <h3>📋 To Do</h3>
+        <div *ngFor="let task of todo" class="task">
+          {{ task.title }}
+          <button class="move-btn" (click)="moveRight(task)">▶</button>
+        </div>
+      </div>
+
+      <div class="column">
+        <h3>⚡ Em Progresso</h3>
+        <div *ngFor="let task of inProgress" class="task">
+          {{ task.title }}
+          <button class="move-btn" (click)="moveLeft(task)">◀</button>
+          <button class="move-btn" (click)="moveRight(task)">▶</button>
+        </div>
+      </div>
+
+      <div class="column">
+        <h3>✅ Concluído</h3>
+        <div *ngFor="let task of done" class="task">
+          {{ task.title }}
+          <button class="move-btn" (click)="moveLeft(task)">◀</button>
+          <button class="delete-btn" (click)="deleteTask(task)">🗑️</button>
+        </div>
+      </div>
     </div>
-  </div>
 
-  <div class="column" cdkDropList #doneList="cdkDropList" [cdkDropListData]="done"
-    [cdkDropListConnectedTo]="[todoList, inProgressList]" (cdkDropListDropped)="drop($event)">
-    <h3>Done</h3>
-    <div *ngFor="let task of done" cdkDrag class="task">
-      <span>{{ task.title }}</span>
-      <button class="delete-btn" (click)="deleteTask(task)"><i class="fas fa-trash"></i></button>
+    <button (click)="showForm = true" class="add-task-btn">+</button>
+
+    <!-- Formulário simples -->
+    <div *ngIf="showForm" class="add-task-form">
+      <input [(ngModel)]="newTask" placeholder="Digite a tarefa" (keyup.enter)="addNewTask()">
+      <button (click)="addNewTask()" class="submit-task-btn">Adicionar</button>
+      <button (click)="showForm = false; newTask = ''" class="cancel-task-btn">Cancelar</button>
     </div>
-  </div>
-</div>
+  </main>
 
-<button (click)="showAddTaskForm()" class="add-task-btn">+</button>
-
-<div *ngIf="isAddTaskFormVisible" class="add-task-form">
-  <input type="text" [(ngModel)]="newTaskTitle" placeholder="Digite o nome da tarefa" />
-  <button (click)="addTask()" class="submit-task-btn">Adicionar</button>
-  <button (click)="hideAddTaskForm()" class="cancel-task-btn">Cancelar</button>
+  <footer>
+    <p>&copy; 2025 kaykypg7. All rights reserved.</p>
+  </footer>
 </div>
